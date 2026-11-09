@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#101121" />
+  <title>ASTRA: Ecos do Vazio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div><b>ASTRA</b><small>ECOS DO VAZIO</small></div></div>
+      <div class="region"><span class="region-line"></span><span id="region-name">VALE DAS CINZAS</span><span class="region-line"></span></div>
+      <button id="map-toggle" class="icon-button" aria-label="Mapa">⌖</button>
+    </header>
+    <section class="quest-card">
+      <div class="eyebrow"><span class="live-dot"></span> MISSÃO PRINCIPAL</div>
+      <h1>O chamado das estrelas</h1>
+      <div class="quest-step"><span class="step-icon">◇</span><span id="quest-text">Ative os 3 marcos estelares</span></div>
+      <div class="quest-progress"><span id="quest-progress"></span></div>
+      <div class="quest-count" id="quest-count">0 / 3</div>
+    </section>
+    <section class="player-card">
+      <div class="portrait"><span>✦</span><i></i></div>
+      <div class="player-info"><div class="player-title"><b>LYRA</b><span>NÍVEL <strong id="level">01</strong></span></div>
+        <div class="bar-label"><span>PV</span><span id="hp-label">100 / 100</span></div><div class="bar hp"><i id="hp-bar"></i></div>
+        <div class="bar-label energy-label"><span>ÉTER</span><span id="energy-label">100%</span></div><div class="bar energy"><i id="energy-bar"></i></div>
+      </div>
+    </section>
+    <section class="combat-feed" id="combat-feed"></section>
+    <section class="boss-bar hidden" id="boss-bar"><div class="boss-heading"><span>✦ AMEAÇA ABISSAL</span><b>DEVORADOR DO CREPÚSCULO</b></div><div class="bar boss"><i id="boss-fill"></i></div></section>
+    <section class="interact-prompt" id="interact-prompt"><span>F</span><b>RESSOAR MARCO ESTELAR</b></section>
+    <section class="controls-hint" id="controls-hint"><span>W A S D</span> mover <i></i><span>ESPAÇO</span> esquiva <i></i><span>J</span> ataque</section>
+    <section class="minimap-wrap"><canvas id="minimap" width="180" height="180"></canvas><div class="map-label">VALE DAS CINZAS</div></section>
+    <section class="skillbar">
+      <div class="skill-group"><div class="skill-key">J</div><div class="skill-icon basic">⚔</div><div class="skill-name">CORTE</div></div>
+      <div class="skill-group"><div class="skill-key">Q</div><div class="skill-icon skill-q">✧</div><div class="skill-name">ARCO LUNAR</div><div class="cooldown" id="q-cooldown"></div></div>
+      <div class="skill-group ultimate"><div class="skill-key">E</div><div class="skill-icon skill-e">✦</div><div class="skill-name">SUPERNOVA</div><div class="ultimate-charge" id="ultimate-charge"><i></i></div></div>
+      <div class="skill-group"><div class="skill-key">SHIFT</div><div class="skill-icon dodge">➤</div><div class="skill-name">ESQUIVA</div></div>
+    </section>
+    <div class="toast" id="toast"></div>
+    <div class="damage-flash" id="damage-flash"></div>
+    <div class="start-screen" id="start-screen">
+      <div class="start-stars"></div><div class="start-content">
+        <div class="start-kicker"><span>✦</span> UMA AVENTURA ALÉM DAS ESTRELAS</div>
+        <h2>ASTRA<span>:</span><br><em>ECOS DO VAZIO</em></h2>
+        <p>O céu se partiu. A luz está desaparecendo.<br>Encontre os marcos perdidos e desperte o poder que dorme em você.</p>
+        <button id="start-button"><span>INICIAR JORNADA</span><b>→</b></button>
+        <div class="start-controls">WASD <i>mover</i>　 J <i>atacar</i>　 Q <i>habilidade</i>　 E <i>suprema</i>　 F <i>interagir</i></div>
+      </div>
+      <div class="start-footer"><span>✦</span> UM MUNDO ABERTO AGUARDA</div>
+    </div>
+    <div class="end-screen hidden" id="end-screen"><div class="end-kicker">✦ MISSÃO CONCLUÍDA ✦</div><h2>O céu voltou<br>a <em>respirar.</em></h2><p>Mas, além das estrelas, algo respondeu ao chamado...</p><button id="continue-button">CONTINUAR EXPLORANDO　→</button></div>
+    <div class="mobile-controls" id="mobile-controls">
+      <div class="joystick" id="joystick"><div class="joy-knob" id="joy-knob"></div></div>
+      <div class="mobile-actions"><button data-action="dodge">➤</button><button data-action="attack">⚔</button><button data-action="skill">✧</button><button data-action="ult">✦</button></div>
+    </div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
